@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type='text/css'>
+      .error{
+        color:red;
+      }
+      .sucess{
+        color:green;
+      }
+    </style>
+  </head>
+  <body>
+    {% if messages %}
+      {% for message in messages %}
+        <p class={{message.tags}}>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+    <h1>Registration</h1>
+    <form class="regis" action="/create" method="POST">
+      {% csrf_token %}
+      first name: <input type="text" name="first_name" value="">
+      last name: <input type="text" name="last_name" value="">
+      e-mail: <input type="text" name="e-mail" value="">
+      password: <input type="text" name="password" value="">
+      password: <input type="text" name="pwconfirm" value="">
+      <input type="submit" name="" value="submit">
+    </form>
+
+    <h1>login</h1>
+    <form class="login" action="/login" method="post">
+      {% csrf_token %}
+      e-mail: <input type="text" name="e-mail" value="">
+      password: <input type="text" name="password" value="">
+      <input type="Submit" name="" value="submit">
+    </form>
+
+    <h3>Users</h3>
+      {% for user in users %}
+        {{user.email}} {{user.password}}<br />
+      {% endfor %}
+  </body>
+</html>
